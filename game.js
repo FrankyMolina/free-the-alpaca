@@ -30,7 +30,7 @@ const game = {
     start() {
         this.reset();
         this.interval = setInterval(() => {
-            //this.clear();
+            this.clear();
             this.drawAll();
             this.moveAll();
 
@@ -41,16 +41,19 @@ const game = {
 
     drawAll() {
         this.background.draw();
+        this.player.draw();
 
     },
 
     reset() {
-        this.background = new Background(this.ctx, this.width, this.height, this.src);
+        this.background = new Background(this.ctx, this.width, this.height);
+        this.player = new Player(this.ctx, this.width, this.height, this.keys);
 
     },
 
     moveAll() {
         this.background.move();
+        this.player.move();
 
     },
 
