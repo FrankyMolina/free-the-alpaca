@@ -8,7 +8,7 @@ const game = {
     framesCounter: 0,
     fireCamps: [],
 
- 
+
 
     keys: {
         spaceBar: 32,
@@ -43,6 +43,10 @@ const game = {
             this.generateFireCamps();
             this.clearFireCamps();
 
+            if (this.burned() === true) {
+                this.gameOver();
+            }
+
 
 
         }, 1000 / 60);
@@ -74,9 +78,9 @@ const game = {
     },
 
     generateFireCamps() {
-        if (this.framesCounter % 90 == 0) {
+        if (this.framesCounter % 130 == 0) {
             this.fireCamps.push(new FireCamps(this.ctx, this.width, this.height));
-            
+
         }
         console.log(this.fireCamps);
     },
@@ -84,4 +88,25 @@ const game = {
     clearFireCamps() {
         this.fireCamps = this.fireCamps.filter(fire => fire.flamePosX >= 0);
     },
+
+    burned() {
+
+        return this.fireCamps.some(fire => {
+            if (
+                this.player.posX + this.player.playerWidth >= fire.flamePosX &&
+                this.player.posY + this.player.playerHeight >= fire.playerPosY0 &&
+                this.player.posX <= fire.flamePosX + fire.width
+            ) return true;
+        })
+
+    },
+
+    gameOver() {
+        clearInterval(this.interval);
+        window.alert('Game Over, start again.');
+    },
+
+
+
+
 }

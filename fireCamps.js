@@ -41,7 +41,7 @@ class FireCamps {
     }
 
     animate(framesCounter) {
-        if (framesCounter % 5 == 0) {
+        if (framesCounter % 10 == 0) {
             this.img.framesIndex++;
         }
         if (this.img.framesIndex > this.img.frames - 1) {
