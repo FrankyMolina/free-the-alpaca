@@ -5,6 +5,11 @@ const game = {
     width: null,
     height: null,
 
+    framesCounter: 0,
+    fireCamps: [],
+
+ 
+
     keys: {
         spaceBar: 32,
 
@@ -30,9 +35,13 @@ const game = {
     start() {
         this.reset();
         this.interval = setInterval(() => {
+            this.framesCounter++;
             this.clear();
             this.drawAll();
             this.moveAll();
+
+            this.generateFireCamps();
+            this.clearFireCamps();
 
 
 
@@ -42,18 +51,21 @@ const game = {
     drawAll() {
         this.background.draw();
         this.player.draw();
+        this.fireCamps.forEach(fire => fire.draw(this.framesCounter));
 
     },
 
     reset() {
         this.background = new Background(this.ctx, this.width, this.height);
         this.player = new Player(this.ctx, this.width, this.height, this.keys);
+        this.fireCamps = [];
 
     },
 
     moveAll() {
         this.background.move();
         this.player.move();
+        this.fireCamps.forEach(fire => fire.move());
 
     },
 
@@ -61,5 +73,15 @@ const game = {
         this.ctx.clearRect(0, 0, this.width, this.height);
     },
 
+    generateFireCamps() {
+        if (this.framesCounter % 90 == 0) {
+            this.fireCamps.push(new FireCamps(this.ctx, this.width, this.height));
+            
+        }
+        console.log(this.fireCamps);
+    },
 
+    clearFireCamps() {
+        this.fireCamps = this.fireCamps.filter(fire => fire.flamePosX >= 0);
+    },
 }
