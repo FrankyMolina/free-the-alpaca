@@ -53,7 +53,7 @@ const game = {
 
             this.burned();
 
-            if (this.lives === 2) {
+            if (this.lives === 0) {
                 this.gameOver();
             }
 
