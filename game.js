@@ -10,7 +10,7 @@ const game = {
 
     alpaca: [],
 
-    //score: 0,
+    score: 0,
 
     keys: {
         spaceBar: 32,
@@ -22,7 +22,7 @@ const game = {
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.setDimensions();
-       // this.scoreboard.init(this.ctx);
+        scoreboard.init(this.ctx);
         this.start();
 
     },
@@ -55,9 +55,9 @@ const game = {
 
 
             if (this.getPoints()) {
-               // this.winGame();
+                // this.winGame();
             }
-            //this.score += 0.01;
+            this.score += 0.01;
 
 
         }, 1000 / 60);
@@ -65,9 +65,10 @@ const game = {
 
     drawAll() {
         this.background.draw();
-        this.player.draw();
+        this.player.draw(this.framesCounter);
         this.fireCamps.forEach(fire => fire.draw(this.framesCounter));
         this.alpaca.forEach(alp => alp.draw(this.framesCounter));
+        this.drawScore();
 
     },
 
@@ -76,7 +77,7 @@ const game = {
         this.player = new Player(this.ctx, this.width, this.height, this.keys);
         this.fireCamps = [];
         this.alpaca = [];
-        //this.scoreboard = scoreboard;
+        this.scoreboard = scoreboard;
 
     },
 
@@ -111,8 +112,8 @@ const game = {
 
         return this.fireCamps.some(fire => {
             if (
-                this.player.posX + this.player.playerWidth >= fire.flamePosX &&
-                this.player.posY + this.player.playerHeight >= fire.playerPosY0 &&
+                this.player.posX + this.player.playerWidth - 50 >= fire.flamePosX &&
+                this.player.posY + this.player.playerHeight - 30 >= fire.playerPosY0 &&
                 this.player.posX <= fire.flamePosX + fire.width
 
             ) return true;
@@ -154,7 +155,7 @@ const game = {
     },
 
     gameWin() {
-        
+
 
         if (this.score === 10) {
             clearInterval(this.interval);
@@ -164,10 +165,10 @@ const game = {
 
     /* ************************************ scoreboard ************************************************************************* */
 
-    /*
+    
     drawScore() {
         this.scoreboard.update(this.score);
     }
-    */
+    
 
 }

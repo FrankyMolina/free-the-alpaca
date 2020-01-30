@@ -6,24 +6,51 @@ class Player {
         this.keys = keys;
 
 
-        this.playerWidth = 50;
-        this.playerHeight = 70;
+        this.playerWidth = 110;
+        this.playerHeight = 130;
 
-        //imgSrc
+
+        this.img = new Image();
+        this.img.src = './images/spritesheet.png';
 
         this.posX = 30;
-        this.posY = 485;
-        this.posY0 = 485;
+        this.posY = 400;
+        this.posY0 = 425;
 
         this.velY = 10;
+
+        this.img.frames = 8;
+        this.img.framesIndex = 0;
 
         this.setListeners();
 
     }
 
-    draw() {
-        this.ctx.fillStyle = "black";
-        this.ctx.fillRect(this.posX, this.posY, this.playerWidth, this.playerHeight);
+    draw(framesCounter) {
+
+        this.ctx.drawImage(
+            this.img,
+            this.img.framesIndex * Math.floor(this.img.width / this.img.frames),
+            0,
+            Math.floor(this.img.width / this.img.frames),
+            this.img.height,
+            this.posX,
+            this.posY,
+            this.playerWidth,
+            this.playerHeight,
+        );
+
+        this.animate(framesCounter);
+
+    }
+
+    animate(framesCounter) {
+        if (framesCounter % 5 == 0) {
+            this.img.framesIndex++;
+        }
+        if (this.img.framesIndex > this.img.frames - 1) {
+            this.img.framesIndex = 0;
+        }
     }
 
     move() {

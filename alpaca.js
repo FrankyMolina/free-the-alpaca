@@ -8,7 +8,7 @@ class Alpaca {
         this.alpacaHeight = 90;
 
         this.alpacaPosX = this.gameWith;
-        this.alpacaPosY = 350;
+        this.alpacaPosY = 300;
 
         this.img = new Image();
         this.img.src = './images/legendary alpaca-trns.png';
