@@ -12,8 +12,12 @@ const game = {
 
     score: 0,
 
+    lives: 3,
+
     keys: {
-        spaceBar: 32,
+        up: 38,
+        //right: 39,
+        //left: 37,
 
     },
 
@@ -23,6 +27,7 @@ const game = {
         this.ctx = this.canvas.getContext('2d');
         this.setDimensions();
         scoreboard.init(this.ctx);
+        //livesboard.init(this.ctx);
         this.start();
 
     },
@@ -46,17 +51,24 @@ const game = {
             this.generateFireCamps();
             this.clearFireCamps();
 
-            /*if (this.burned()) {
+            this.burned();
+
+            if (this.lives === 2) {
                 this.gameOver();
-            }*/
+            }
+
 
             this.generateAlpaca();
             this.clearAlpaca();
 
 
-            if (this.getPoints()) {
-                // this.winGame();
+            this.getPoints();
+
+            if (this.score >= 500) {
+                this.gameWin();
             }
+
+
             this.score += 0.01;
 
 
@@ -69,6 +81,7 @@ const game = {
         this.fireCamps.forEach(fire => fire.draw(this.framesCounter));
         this.alpaca.forEach(alp => alp.draw(this.framesCounter));
         this.drawScore();
+        //this.drawLives();
 
     },
 
@@ -78,6 +91,7 @@ const game = {
         this.fireCamps = [];
         this.alpaca = [];
         this.scoreboard = scoreboard;
+        //this.livesboard = livesboard;
 
     },
 
@@ -110,21 +124,40 @@ const game = {
 
     burned() {
 
-        return this.fireCamps.some(fire => {
+        return this.fireCamps.some((fire, idx) => {
             if (
                 this.player.posX + this.player.playerWidth - 50 >= fire.flamePosX &&
                 this.player.posY + this.player.playerHeight - 30 >= fire.playerPosY0 &&
                 this.player.posX <= fire.flamePosX + fire.width
 
-            ) return true;
+            ) {
+                this.fireCamps.splice(idx, 1);
+                this.lives--;
+                console.log(this.lives);
+                return true;
+            }
         })
 
     },
 
     gameOver() {
         clearInterval(this.interval);
-        window.alert('Game Over, start again.');
+        /*window.alert('Game Over, start again.');*/
+        
+        document.querySelector('#canvas').style.display = 'none';
+        document.querySelector('#game-over').style.display = 'flex';
+        
+        setTimeout(()=> {
+            location.reload();
+
+        },2500);
+        
+
     },
+
+
+
+
 
     //*****************Alpaca**************************************************************************************************** */
 
@@ -142,33 +175,39 @@ const game = {
 
     getPoints() {
 
-        return this.alpaca.some(alp => {
+        return this.alpaca.some((alp, idx) => {
 
             if (
-                this.player.posX + this.player.playerWidth >= alp.alpacaPosX &&
-                this.player.posY + this.player.playerHeight >= alp.alpacaPosY &&
+                this.player.posX + this.player.playerWidth - 50 >= alp.alpacaPosX &&
+                this.player.posY + this.player.playerHeight - 30 >= alp.alpacaPosY &&
                 this.player.posX <= alp.alpacaPosX + alp.alpacaWidth &&
                 this.player.posY <= alp.alpacaPosY + alp.alpacaHeight
-            ) return /*this.score += 2 &&*/ true;
+            ) {
+                this.alpaca.splice(idx, 1)
+                this.score += 25;
+            }
+
         })
 
     },
 
     gameWin() {
 
+        clearInterval(this.interval);
+        window.alert('You win the game!!!');
 
-        if (this.score === 10) {
-            clearInterval(this.interval);
-            window.alert('You win the game!!!');
-        }
     },
 
     /* ************************************ scoreboard ************************************************************************* */
 
-    
+
     drawScore() {
         this.scoreboard.update(this.score);
-    }
-    
+    },
 
+    /* ************************************* Lives ******************************************************************************* */
+
+    /*drawLives() {
+        this.livesboard.update(this.lives);
+    }*/
 }

@@ -59,24 +59,30 @@ class Player {
         if (this.posY < this.posY0) {
             this.posY += this.velY;
             this.velY += gravity;
-          } else {
+        } else {
             this.posY = this.posY0;
             this.velY = 1;
-          }
+        }
 
     }
 
     setListeners() {
         document.addEventListener("keydown", e => {
             switch (e.keyCode) {
-                case this.keys.spaceBar:
+                case this.keys.up:
                     if (this.posY >= this.posY0) {
                         this.posY -= 40;
                         this.velY -= 8;
-                        
-                    }
 
+                    }
+                /*case this.keys.right:
+                    if (this.posX <= this.gameWidth - this.playerWidth - 30)
+
+                        this.posX += 20;*/
             }
-        });
+
+        })
+
     }
 }
+

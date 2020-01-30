@@ -10,8 +10,7 @@ const scoreboard = {
 
     update(score) {
         this.ctx.fillStyle = "green";
-        console.log(Math.floor(score), "--------------");
-        this.ctx.fillText(Math.floor(score), 50, 50);
+        this.ctx.fillText(`${Math.floor(score)} / 500`, 50, 50);
     }
 };
 

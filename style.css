@@ -72,21 +72,26 @@ canvas {
   
 }
 
+
+#game-over {
+
+  margin-top: 100px;
+  margin-left: 100px;
+  margin-right: 50px;
+
+  width: 800px;
+  height: 600px;
+  background-image: url('./images/joke-gameover.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  display: none;  
+}
+
+
 /* (thanks to https://codepen.io/piecdesmit/details/OMYNZg/ for making the button style) -Sincerely, Franky Molina*/
 
 @-webkit-keyframes active {
-  0% {
-    transform: scale(1, 1);
-  }
-  90% {
-    transform: scale(.9, .88);
-  }
-  100% {
-    transform: scale(.92, .9);
-  }
-}
-
-keyframes active {
   0% {
     transform: scale(1, 1);
   }

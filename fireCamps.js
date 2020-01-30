@@ -18,7 +18,7 @@ class FireCamps {
 
 
 
-        this.velX = 2;
+        this.velX = Math.floor(Math.random() * 6) + 2;//2;
     }
 
 
