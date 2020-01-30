@@ -6,8 +6,8 @@ class Player {
         this.keys = keys;
 
 
-        this.playerWidth = 110;
-        this.playerHeight = 130;
+        this.playerWidth = 120;
+        this.playerHeight = 140;
 
 
         this.img = new Image();

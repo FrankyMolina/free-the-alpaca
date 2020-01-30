@@ -27,7 +27,7 @@ const game = {
         this.ctx = this.canvas.getContext('2d');
         this.setDimensions();
         scoreboard.init(this.ctx);
-        //livesboard.init(this.ctx);
+        livesboard.init(this.ctx);
         this.start();
 
     },
@@ -81,7 +81,7 @@ const game = {
         this.fireCamps.forEach(fire => fire.draw(this.framesCounter));
         this.alpaca.forEach(alp => alp.draw(this.framesCounter));
         this.drawScore();
-        //this.drawLives();
+        this.drawLives();
 
     },
 
@@ -91,7 +91,7 @@ const game = {
         this.fireCamps = [];
         this.alpaca = [];
         this.scoreboard = scoreboard;
-        //this.livesboard = livesboard;
+        this.livesboard = livesboard;
 
     },
 
@@ -115,7 +115,7 @@ const game = {
             this.fireCamps.push(new FireCamps(this.ctx, this.width, this.height));
 
         }
-        //console.log(this.fireCamps);
+        
     },
 
     clearFireCamps() {
@@ -207,7 +207,7 @@ const game = {
 
     /* ************************************* Lives ******************************************************************************* */
 
-    /*drawLives() {
+    drawLives() {
         this.livesboard.update(this.lives);
-    }*/
+    }
 }
