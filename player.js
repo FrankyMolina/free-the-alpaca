@@ -6,7 +6,7 @@ class Player {
         this.keys = keys;
 
 
-        this.playerWidth = 120;
+        this.playerWidth = 130;
         this.playerHeight = 140;
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,9 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-    
+
     <div id="main-container">
         <h1>The legendary Alpaca's Quest. 🦙</h1>
         <img src="./images/alpaca-main-container.jpg" alt="magestic alpaca">
@@ -19,18 +21,27 @@
         <ul>
             <li>The game will start as soon as you press the "Bahh!!!" button.</li>
             <li>If you touch the firecamps three times... Game Over.</li>
-            <li>Each alpaca gives you +25 points, you will get points through time as well, earn 500 points to be graced with the mighty presence of the legendary alpaca</li>
+            <li>Each alpaca gives you +25 points, you will get points through time as well, earn 500 points to be graced
+                with the mighty presence of the legendary alpaca</li>
         </ul>
 
     </div>
-    
-    <div id="game-over"></div>
-    <canvas id="canvas"></canvas>
-    
-    
-    
 
-    
+    <div id="video-container">
+        <video loop>
+            <!-- original src: https://www.youtube.com/watch?v=b11PAIKMm3o // user: fuzzy bug -->
+            <source src="./images/videoplaybackMP4.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="game-over"></div>
+
+    <canvas id="canvas"></canvas>
+
+
+
+
+
     <script src="background.js"></script>
     <script src="fireCamps.js"></script>
     <script src="alpaca.js"></script>
@@ -40,4 +51,5 @@
     <script src="game.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

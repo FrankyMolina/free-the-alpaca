@@ -16,8 +16,7 @@ const game = {
 
     keys: {
         up: 38,
-        //right: 39,
-        //left: 37,
+        
 
     },
 
@@ -26,6 +25,7 @@ const game = {
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.setDimensions();
+        this.transition();
         scoreboard.init(this.ctx);
         livesboard.init(this.ctx);
         this.start();
@@ -42,6 +42,7 @@ const game = {
 
     start() {
         this.reset();
+        //this.music();
         this.interval = setInterval(() => {
             this.framesCounter++;
             this.clear();
@@ -64,7 +65,7 @@ const game = {
 
             this.getPoints();
 
-            if (this.score >= 500) {
+            if (this.score >= 150) {
                 this.gameWin();
             }
 
@@ -115,7 +116,7 @@ const game = {
             this.fireCamps.push(new FireCamps(this.ctx, this.width, this.height));
 
         }
-        
+
     },
 
     clearFireCamps() {
@@ -143,15 +144,15 @@ const game = {
     gameOver() {
         clearInterval(this.interval);
         /*window.alert('Game Over, start again.');*/
-        
+
         document.querySelector('#canvas').style.display = 'none';
         document.querySelector('#game-over').style.display = 'flex';
-        
-        setTimeout(()=> {
+
+        setTimeout(() => {
             location.reload();
 
-        },2500);
-        
+        }, 2500);
+
 
     },
 
@@ -196,6 +197,34 @@ const game = {
         clearInterval(this.interval);
         window.alert('You win the game!!!');
 
+        document.querySelector('#canvas').style.display = 'none';
+        document.querySelector('#video-container').style.display = 'flex';
+
+        setTimeout(() => {
+
+            // https://github.com/vimeo/player.js/issues/273 thanks nextend ♥
+            
+            var promise = document.querySelector('video').play();
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    // Autoplay started!
+                }).catch(error => {
+                    // Autoplay was prevented.
+                    // Show a "Play" button so that user can start playback.
+                });
+            }
+
+
+
+        }, 100);
+
+        setTimeout(() => {
+
+            location.reload();
+
+        }, 18000);
+
+
     },
 
     /* ************************************ scoreboard ************************************************************************* */
@@ -209,5 +238,24 @@ const game = {
 
     drawLives() {
         this.livesboard.update(this.lives);
+    },
+
+    /* ************************************************* button canvas display flex ********************************************* */
+
+    transition() {
+        document.querySelector('#canvas').style.display = 'flex';
+    },
+
+    /* ******************************** music ************************************************************************************* */
+    music(){
+        let musicGame = document.createElement('audio');
+        musicGame.src = '???(img/music.mp3';
+        musicGame.volume = 0.5;
+        musicGame.play();
     }
 }
+
+
+
+
+
