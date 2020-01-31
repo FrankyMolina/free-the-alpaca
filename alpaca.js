@@ -15,7 +15,7 @@ class Alpaca {
 
 
 
-        this.velX = Math.floor(Math.random() * 16) + 5; //6;
+        this.velX = Math.floor(Math.random() * 16) + 5;
     }
 
 

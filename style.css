@@ -37,8 +37,6 @@ img {
 body {
   display: flex;
   justify-content: space-around;
-  /*background-color: rgba(247, 247, 247, 0.836);*/
-  /*background-image: url(./images/body-bg-m1.jpg);*/
   background-image: url(./images/body-bg-m2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,12 +51,6 @@ ul li {
 }
 
 canvas {
-  /*width: 700px;
-  height: 600px;*/
-  /*background-color: rgba(171, 225, 136, 0.596);*/
-  
-  /*border: 1px solid #5D675B;*/
-  /*align-self: center;*/
   margin-left: 10px;
   margin-top: 50px;
   display: none;
@@ -97,12 +89,12 @@ video {
   height: 800px;
   width: 600px;
 
-  /*box-shadow: 0px 0px 47px 1px rgba(0,0,0,0.75);*/
+  
 }
 
 
 
-/* (thanks to https://codepen.io/piecdesmit/details/OMYNZg/ for making the button style) -Sincerely, Franky Molina*/
+/* (thanks to https://codepen.io/piecdesmit/details/OMYNZg/ for making the button style)*/
 
 @-webkit-keyframes active {
   0% {

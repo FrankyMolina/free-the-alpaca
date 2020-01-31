@@ -75,13 +75,14 @@ class Player {
                         this.velY -= 8;
 
                     }
-                /*case this.keys.right:
-                    if (this.posX <= this.gameWidth - this.playerWidth - 30)
+                    break;
+                    
 
-                        this.posX += 20;*/
+
+
             }
 
-        })
+        });
 
     }
 }

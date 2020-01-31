@@ -16,7 +16,7 @@ const game = {
 
     keys: {
         up: 38,
-        
+
 
     },
 
@@ -42,7 +42,7 @@ const game = {
 
     start() {
         this.reset();
-        //this.music();
+        this.music();
         this.interval = setInterval(() => {
             this.framesCounter++;
             this.clear();
@@ -65,7 +65,7 @@ const game = {
 
             this.getPoints();
 
-            if (this.score >= 150) {
+            if (this.score >= 180) {
                 this.gameWin();
             }
 
@@ -134,7 +134,6 @@ const game = {
             ) {
                 this.fireCamps.splice(idx, 1);
                 this.lives--;
-                console.log(this.lives);
                 return true;
             }
         })
@@ -143,7 +142,7 @@ const game = {
 
     gameOver() {
         clearInterval(this.interval);
-        /*window.alert('Game Over, start again.');*/
+        
 
         document.querySelector('#canvas').style.display = 'none';
         document.querySelector('#game-over').style.display = 'flex';
@@ -167,7 +166,7 @@ const game = {
             this.alpaca.push(new Alpaca(this.ctx, this.width, this.height));
 
         }
-        //console.log(this.alpaca);
+        
     },
 
     clearAlpaca() {
@@ -195,7 +194,10 @@ const game = {
     gameWin() {
 
         clearInterval(this.interval);
+
         window.alert('You win the game!!!');
+
+        
 
         document.querySelector('#canvas').style.display = 'none';
         document.querySelector('#video-container').style.display = 'flex';
@@ -203,7 +205,7 @@ const game = {
         setTimeout(() => {
 
             // https://github.com/vimeo/player.js/issues/273 thanks nextend ♥
-            
+
             var promise = document.querySelector('video').play();
             if (promise !== undefined) {
                 promise.then(_ => {
@@ -240,21 +242,23 @@ const game = {
         this.livesboard.update(this.lives);
     },
 
-    /* ************************************************* button canvas display flex ********************************************* */
+    /* ************************************************* start button canvas display flex ********************************************* */
 
     transition() {
         document.querySelector('#canvas').style.display = 'flex';
     },
 
-    /* ******************************** music ************************************************************************************* */
-    /*
-    music(){
+    /* ******************************** BG music ************************************************************************************* */
+
+    music() {
         let musicGame = document.createElement('audio');
-        musicGame.src = '???(img/music.mp3';
+        musicGame.src = './images/birdSoundMP3.mp3';
         musicGame.volume = 0.5;
         musicGame.play();
-    }
-    */ 
+    },
+
+
+
 }
 
 

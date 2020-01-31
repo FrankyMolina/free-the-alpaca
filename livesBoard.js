@@ -1,6 +1,6 @@
 
 const livesboard = {
-    //ctx = null,
+    
 
     init(ctx) {
 

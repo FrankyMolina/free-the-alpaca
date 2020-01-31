@@ -1,6 +1,6 @@
 
 const scoreboard = {
-    ctx: null,
+    
 
     init(ctx) {
         this.ctx = ctx;
@@ -10,7 +10,7 @@ const scoreboard = {
 
     update(score) {
         this.ctx.fillStyle = "green";
-        this.ctx.fillText(`${Math.floor(score)} / 150`, 50, 50);
+        this.ctx.fillText(`${Math.floor(score)} / 180`, 50, 50);
     }
 };
 
