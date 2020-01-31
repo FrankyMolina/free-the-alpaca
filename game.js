@@ -247,12 +247,14 @@ const game = {
     },
 
     /* ******************************** music ************************************************************************************* */
+    /*
     music(){
         let musicGame = document.createElement('audio');
         musicGame.src = '???(img/music.mp3';
         musicGame.volume = 0.5;
         musicGame.play();
     }
+    */
 }
 
 
